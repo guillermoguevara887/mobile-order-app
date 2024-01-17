@@ -7,9 +7,9 @@
     --letter-green-light: #ECFDF5;
     --white: #FFFFFF;
     --green-border: #757575;
-    --sm-font-size: 16px;
+    --sm-font-size: 18px;
     --lg-font-size: 24px;
-    --xx-font-size: 60px;
+    --xx-font-size: 80px;
 
 
 }
@@ -49,9 +49,72 @@ header {
 
 .p-emoji {
     font-size: var(--xx-font-size);
+    margin-top: 0px;
 }
 
 .menu-container {
     display: flex;
+    justify-content: space-between;
+    height: 140px;
 
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 0px;
+    gap: 20px;
+    border-bottom: 1px var(--green-border) solid;
+
+}
+
+.menu-item {
+    width: 10%;
+    justify-items: start;
+}
+
+.menu-item1 {
+    width: 60%;
+    align-content: start;
+    margin-top: 4px;
+}
+
+.p-name {
+    margin: 6px;
+}
+
+.p-name-title {
+    font-size: var(--lg-font-size);
+    color: var(--letter-color-black);
+
+}
+
+.p-name-ingredients {
+    font-size: var(--sm-font-size);
+    color: var(--green-border);
+}
+
+.p-name-price {
+    font-size: var(--sm-font-size);
+    color: var(--letter-color-black);
+}
+
+.menu-item3 {
+    margin-top: 25px;
+}
+
+.button {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--letter-green-pay);
+    color: var(--letter-green-strong);
+    border: none;
+    font-size: var(--sm-font-size);
+
+}
+
+button:hover {
+    background-color: var(--letter-green-strong);
+    color: var(--letter-green-light);
+    cursor: pointer;
+    transform: scale(1.2);
 }

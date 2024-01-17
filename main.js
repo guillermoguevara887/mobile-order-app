@@ -18,7 +18,9 @@ function renderMenu() {
         let p3 = document.createElement("p");
         let button = document.createElement("button");
         p.classList.add("p-emoji");
-        p1.classList.add("p-name");
+        p1.classList.add("p-name", "p-name-title");
+        p2.classList.add("p-name", "p-name-ingredients");
+        p3.classList.add("p-name", "p-name-price");
         p.textContent = `${item.emoji}`;
         p1.textContent = `${item.name}`;
         p2.textContent = `${item.ingredients}`;
