@@ -118,3 +118,15 @@ button:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
+
+.p-render-title {
+    text-align: center;
+}
+
+.inactive {
+    display: none;
+}
+
+.active {
+    display: block;
+}

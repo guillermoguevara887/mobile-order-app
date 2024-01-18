@@ -1,6 +1,9 @@
 import menuArray from "./data.js";
 
 const menu = document.getElementById("main-container");
+const checkout = document.getElementById("checkout");
+const cambio = document.getElementById("switch");
+let itemArray = [];
 
 function renderMenu() {
     menuArray.forEach(item => {
@@ -16,7 +19,7 @@ function renderMenu() {
         let p1 = document.createElement("p");
         let p2 = document.createElement("p");
         let p3 = document.createElement("p");
-        let button = document.createElement("button");
+        const button = document.createElement("button");
         p.classList.add("p-emoji");
         p1.classList.add("p-name", "p-name-title");
         p2.classList.add("p-name", "p-name-ingredients");
@@ -27,6 +30,8 @@ function renderMenu() {
         p3.textContent = `$ ${item.price}`;
         button.textContent = `Add to cart`;
         button.classList.add("button");
+        button.setAttribute("data-id", `${item.id}`);
+
 
         menuItem.appendChild(p);
         menuItem1.appendChild(p1);
@@ -41,5 +46,69 @@ function renderMenu() {
         menu.appendChild(menuContainer);
     });
 }
-
 renderMenu();
+
+
+
+document.addEventListener("click", function (e) {
+
+
+    const id = e.target.dataset.id;
+
+
+
+    if (id == 0) {
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        itemArray.push(arraySecond);
+        console.log(itemArray);
+
+    } else if (id == 1) {
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        itemArray.push(arraySecond);
+        console.log(itemArray);
+
+
+    } else if (id == 2) {
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        itemArray.push(arraySecond);
+        console.log(itemArray);
+
+    }
+    renderFeed();
+
+
+
+})
+
+function getFeed() {
+
+
+    let feedhtml = ``;
+
+    itemArray.forEach(item => {
+        feedhtml += `
+        
+        <div class = "feed-item">
+            <p>${item[0]} </p>
+            <p>${item[1]} </p>
+        </div>
+
+        `
+
+
+    })
+    return feedhtml;
+}
+
+function renderFeed() {
+    checkout.innerHTML = getFeed();
+}
+
+
+document.addEventListener("click", function (e) {
+    const id = e.target.dataset.id;
+
+
+
+    // ... resto del código ...
+});
