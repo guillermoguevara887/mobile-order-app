@@ -2,7 +2,7 @@ import menuArray from "./data.js";
 
 const menu = document.getElementById("main-container");
 const checkout = document.getElementById("checkout");
-const cambio = document.getElementById("switch");
+const cambio = document.getElementById("cambio");
 let itemArray = [];
 
 function renderMenu() {
@@ -29,7 +29,7 @@ function renderMenu() {
         p2.textContent = `${item.ingredients}`;
         p3.textContent = `$ ${item.price}`;
         button.textContent = `Add to cart`;
-        button.classList.add("button");
+        button.classList.add("btn");
         button.setAttribute("data-id", `${item.id}`);
 
 
@@ -51,6 +51,10 @@ renderMenu();
 
 
 document.addEventListener("click", function (e) {
+    cambio.classList.remove("inactive");
+    cambio.classList.add("active");
+
+
 
 
     const id = e.target.dataset.id;
@@ -81,34 +85,49 @@ document.addEventListener("click", function (e) {
 })
 
 function getFeed() {
-
+    let sum = 0;
 
     let feedhtml = ``;
 
     itemArray.forEach(item => {
+        sum += parseInt(item[1]);
+
+
         feedhtml += `
         
         <div class = "feed-item">
-            <p>${item[0]} </p>
-            <p>${item[1]} </p>
+            <div class="p-one">
+                <p>${item[0]}</p>         
+            </div>
+            <div class="p-two">
+                <button class = "btnRemove">Remove</button>       
+            </div>
+            <div class="p-three">
+                <p>$: ${item[1]} </p>
+            
+            </div>   
+
         </div>
 
         `
 
 
     })
+
+    feedhtml += `
+    <div class="total">
+        <p>Total $: ${sum}</p>
+    </div>
+
+    `
     return feedhtml;
 }
 
 function renderFeed() {
     checkout.innerHTML = getFeed();
+
 }
 
 
-document.addEventListener("click", function (e) {
-    const id = e.target.dataset.id;
 
 
-
-    // ... resto del código ...
-});
