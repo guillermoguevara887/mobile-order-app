@@ -4,6 +4,10 @@ const menu = document.getElementById("main-container");
 const checkout = document.getElementById("checkout");
 const cambio = document.getElementById("cambio");
 let itemArray = [];
+let idBtn = 100;
+
+
+
 
 function renderMenu() {
     menuArray.forEach(item => {
@@ -51,46 +55,57 @@ renderMenu();
 
 
 document.addEventListener("click", function (e) {
+    idBtn += 1;
     cambio.classList.remove("inactive");
     cambio.classList.add("active");
 
-
-
-
     const id = e.target.dataset.id;
-
+    const num = e.target.dataset.num;
 
 
     if (id == 0) {
-        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`, `${idBtn}`];
         itemArray.push(arraySecond);
-        console.log(itemArray);
+
 
     } else if (id == 1) {
-        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`, `${idBtn}`];
         itemArray.push(arraySecond);
-        console.log(itemArray);
+
 
 
     } else if (id == 2) {
-        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`];
+        const arraySecond = [`${menuArray[id].name}`, `${menuArray[id].price}`, `${idBtn}`];
         itemArray.push(arraySecond);
-        console.log(itemArray);
 
+
+    } else if (num) {
+        targetItem(num);
     }
+
+
     renderFeed();
-
-
 
 })
 
+function targetItem(numId) {
+    const index = itemArray.findIndex(item => item[2] == numId);
+    itemArray.splice(index, 1);
+    renderFeed();
+
+}
+
 function getFeed() {
     let sum = 0;
+
+
 
     let feedhtml = ``;
 
     itemArray.forEach(item => {
         sum += parseInt(item[1]);
+
+
 
 
         feedhtml += `
@@ -100,7 +115,7 @@ function getFeed() {
                 <p>${item[0]}</p>         
             </div>
             <div class="p-two">
-                <button class = "btnRemove">Remove</button>       
+                <button class = "btnRemove " data-num ="${item[2]}">Remove</button>       
             </div>
             <div class="p-three">
                 <p>$: ${item[1]} </p>
@@ -120,13 +135,20 @@ function getFeed() {
     </div>
 
     `
+
+
+    console.log(itemArray);
+
+
     return feedhtml;
+
 }
 
 function renderFeed() {
     checkout.innerHTML = getFeed();
-
 }
+
+
 
 
 
