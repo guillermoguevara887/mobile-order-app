@@ -81,6 +81,9 @@ document.addEventListener("click", function (e) {
 
     } else if (num) {
         targetItem(num);
+    } else if (e.target.dataset.btn == 9999) {
+
+        console.log("checkout");
     }
 
 
@@ -106,8 +109,6 @@ function getFeed() {
         sum += parseInt(item[1]);
 
 
-
-
         feedhtml += `
         
         <div class = "feed-item">
@@ -126,12 +127,14 @@ function getFeed() {
 
         `
 
-
     })
 
     feedhtml += `
     <div class="total">
         <p>Total $: ${sum}</p>
+    </div>
+    <div class="btnCheckout">
+        <button class="btn-check" data-btn = "${9999}">Checkout</button>
     </div>
 
     `
