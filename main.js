@@ -6,13 +6,31 @@ const cambio = document.getElementById("cambio");
 const payTotal = document.getElementById("payTotal");
 const screen = document.getElementById('screen');
 const idForm = document.getElementById('id-form');
+const name = document.getElementById('name');
+const screenPay = document.getElementById('screen-pay');
+const screenPayMain = document.getElementById('screen-pay-main');
+const payPay = document.getElementById('pay-pay');
+console.log(name.value);
+
+
 let tipp = 0;
 
 let itemArray = [];
 let idBtn = 100;
 
 
+idForm.addEventListener('submit', function (event) {
+    event.preventDefault();
 
+    screen.style.display = 'none';
+    screenPay.style.display = 'inline';
+    renderPay();
+
+})
+
+document.querySelector('#exit').addEventListener('click', function () {
+    location.reload();
+});
 
 
 
@@ -62,12 +80,15 @@ renderMenu();
 
 
 document.addEventListener("click", function (e) {
+    let actElem = 0;
     idBtn += 1;
     cambio.classList.remove("inactive");
     cambio.classList.add("active");
     const id = e.target.dataset.id;
     const num = e.target.dataset.num;
     const tip = e.target.dataset.tip;
+    const x = e.target.dataset.click;
+
 
 
     if (id == 0) {
@@ -91,8 +112,13 @@ document.addEventListener("click", function (e) {
     } else if (e.target.dataset.btn == 9999) {
         screen.style.display = 'inline';
     } else if (tip) {
-        tipp = parseFloat(tip);
-
+        if (actElem == 0) {
+            tipp = parseFloat(tip);
+            actElem = 1;
+        }
+    } else if (x) {
+        screen.style.display = 'none';
+        console.log(x)
     }
 
 
@@ -104,6 +130,7 @@ document.addEventListener("click", function (e) {
 function targetItem(numId) {
     const index = itemArray.findIndex(item => item[2] == numId);
     itemArray.splice(index, 1);
+    tipp = 0;
     renderFeed();
 
 }
@@ -180,6 +207,19 @@ function renderTotal(sum) {
     let pTotal = document.createElement('p');
     pTotal.textContent = `The Total is: $ ${sum} `;
     payTotal.appendChild(pTotal);
+}
+
+function renderPay() {
+
+
+    payPay.textContent = `Thanks ${name.value}!! your order is on its way!!`;
+    console.log(payPay);
+    return payPay;
+
+}
+
+function renderPayF() {
+    screenPayMain.innerHTML = renderPay();
 }
 
 

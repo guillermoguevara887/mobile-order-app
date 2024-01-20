@@ -268,3 +268,76 @@ header {
     border: none;
 
 }
+
+.xx {
+    position: absolute;
+    top: 0px;
+    right: 12px;
+
+    height: 20px;
+    width: 20px;
+
+
+}
+
+#x {
+    font-size: var(--lg-font-size);
+    border: 1px solid var(--letter-green-strong);
+    margin-top: 10px;
+
+}
+
+#screen-pay {
+
+    text-align: center;
+    display: none;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 132px;
+    width: 450px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 2px #666;
+    background-color: var(--white);
+}
+
+#screen-pay {
+
+    background-color: var(--letter-green-pay);
+    box-shadow: 0px 0px 6px 2px #666;
+
+}
+
+.screen-pay-main {
+    width: 100%;
+    height: 80%;
+    margin-top: 36px;
+    font-size: var(--lg-font-size);
+    color: var(--white);
+}
+
+#payPay {
+    box-shadow: 0px 0px 6px 2px #666;
+}
+
+#exit {
+    margin-bottom: 20px;
+    position: absolute;
+    top: 80px;
+    right: 210px;
+    height: 34px;
+    width: 60px;
+    border: none;
+    background-color: var(--letter-green-strong);
+    color: var(--white);
+    font-size: var(--sm-font-size);
+    box-shadow: 0px 0px 6px 2px #666;
+}
+
+#exit:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
