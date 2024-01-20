@@ -3,8 +3,15 @@ import menuArray from "./data.js";
 const menu = document.getElementById("main-container");
 const checkout = document.getElementById("checkout");
 const cambio = document.getElementById("cambio");
+const payTotal = document.getElementById("payTotal");
+const screen = document.getElementById('screen');
+const idForm = document.getElementById('id-form');
+let tipp = 0;
+
 let itemArray = [];
 let idBtn = 100;
+
+
 
 
 
@@ -58,9 +65,9 @@ document.addEventListener("click", function (e) {
     idBtn += 1;
     cambio.classList.remove("inactive");
     cambio.classList.add("active");
-
     const id = e.target.dataset.id;
     const num = e.target.dataset.num;
+    const tip = e.target.dataset.tip;
 
 
     if (id == 0) {
@@ -82,9 +89,12 @@ document.addEventListener("click", function (e) {
     } else if (num) {
         targetItem(num);
     } else if (e.target.dataset.btn == 9999) {
+        screen.style.display = 'inline';
+    } else if (tip) {
+        tipp = parseFloat(tip);
 
-        console.log("checkout");
     }
+
 
 
     renderFeed();
@@ -100,7 +110,6 @@ function targetItem(numId) {
 
 function getFeed() {
     let sum = 0;
-
 
 
     let feedhtml = ``;
@@ -119,7 +128,7 @@ function getFeed() {
                 <button class = "btnRemove " data-num ="${item[2]}">Remove</button>       
             </div>
             <div class="p-three">
-                <p>$: ${item[1]} </p>
+                <p>$ ${item[1]} </p>
             
             </div>   
 
@@ -130,26 +139,51 @@ function getFeed() {
     })
 
     feedhtml += `
-    <div class="total">
-        <p>Total $: ${sum}</p>
-    </div>
-    <div class="btnCheckout">
-        <button class="btn-check" data-btn = "${9999}">Checkout</button>
+    <div class="tip-add">
+    <button class ="btn-tip" data-tip= " ${(sum * .10).toFixed(2)}">Tip 5%: <br>$ ${(sum * .10).toFixed(2)}</button>
+    <button class ="btn-tip" data-tip= " ${(sum * .12).toFixed(2)}">Tip 12%: <br>$ ${(sum * .12).toFixed(2)}</button>
+    <button class ="btn-tip" data-tip= "${(sum * .18).toFixed(2)}">Tip 18%: <br>$ ${(sum * .18).toFixed(2)}</button>
+
     </div>
 
     `
 
 
-    console.log(itemArray);
+    let sumTip = sum + tipp;
+
+    feedhtml += `
+    <div class="total">
+        <p>Total: $ ${sumTip}</p>
+    </div>
+    <div class="btnCheckout">
+        <button class="btn-check" data-btn = "${9999}">Checkout</button>
+    </div>
+
+`
+
+    renderTotal(sumTip);
 
 
-    return feedhtml;
+    return feedhtml
 
 }
 
 function renderFeed() {
     checkout.innerHTML = getFeed();
 }
+
+
+
+
+function renderTotal(sum) {
+    payTotal.innerHTML = '';
+    let pTotal = document.createElement('p');
+    pTotal.textContent = `The Total is: $ ${sum} `;
+    payTotal.appendChild(pTotal);
+}
+
+
+
 
 
 
